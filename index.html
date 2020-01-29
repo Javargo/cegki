@@ -40,7 +40,7 @@ function go()
 	};
 	xhttp.open("GET", requestString, true, "demo", "demo");
 	xhttp.setRequestHeader('Content-Type', 'text/plain');
-	xhttp.setRequestHeader("Authorization", "Basic " + btoa("demo:demo"));
+	//xhttp.setRequestHeader("Authorization", "Basic " + btoa("demo:demo"));
 	//xhttp.setRequestHeader("Upgrade-Insecure-Request", "1");
 	xhttp.withCredentials = true;
 	xhttp.send();
