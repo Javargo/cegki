@@ -1,6 +1,7 @@
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <title>Cégjegyzék teszt</title>
 <script type="text/javascript" crossorigin="use-credentials">
 
@@ -14,8 +15,8 @@ function loadXMLDoc(filename)
 
 function go()
 {
-	var requestString="https://demo:demo@occsztest.e-cegjegyzek.hu/IMOnline?outformat=xml6&semaverzio=20180901&reqtip=adat&stype=Cegkereses&cegnev=teszt&hatalyos=1";
-	//var requestString="https://occsztest.e-cegjegyzek.hu/IMOnline?outformat=xml6&semaverzio=20180901&reqtip=adat&stype=Cegkereses&cegnev=teszt&hatalyos=1";
+	//var requestString="https://demo:demo@occsztest.e-cegjegyzek.hu/IMOnline?outformat=xml6&semaverzio=20180901&reqtip=adat&stype=Cegkereses&cegnev=teszt&hatalyos=1";
+	var requestString="https://occsztest.e-cegjegyzek.hu/IMOnline?outformat=xml6&semaverzio=20180901&reqtip=adat&stype=Cegkereses&cegnev=teszt&hatalyos=1";
 
 	//var xsl=loadXMLDoc("searchresults.xsl");
 	var xhttp = new XMLHttpRequest();
@@ -46,7 +47,7 @@ function go()
 	console.log("---1");
 }
 
-var cgWindow;
+/*var cgWindow;
 
 function go2()
 {
@@ -57,14 +58,15 @@ function go2()
 function go3()
 {
 	console.log(cgWindow.document.documentElement.innerHTML);
-}
+}*/
 
 
 </script>
 </head>
 <body>
-Cégnév: <input type="text" id="cegnev"></input><br/>
-<input value="1" onclick="go();" type="button"><input value="Cégjegyzék" onclick="go2();" type="button"><input value="???" onclick="go3();" type="button">
-<div id="result_area"/>
+Cégnév: <input type="text" id="cegnev"/>
+<br/>
+<input value="1" onclick="go();" type="button"/><input value="Cégjegyzék" onclick="go2();" type="button"/><input value="???" onclick="go3();" type="button"/>
+<div id="result_area"></div>
 </body>
 </html>
