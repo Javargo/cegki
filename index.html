@@ -14,7 +14,9 @@ function loadXMLDoc(filename)
 
 function go()
 {
-	var requestString="https://demo:demo@occsztest.e-cegjegyzek.hu/IMOnline?outformat=xml6&semaverzio=20180901&reqtip=adat&stype=Cegkereses&cegnev=teszt&hatalyos=1";
+	//var requestString="https://demo:demo@occsztest.e-cegjegyzek.hu/IMOnline?outformat=xml6&semaverzio=20180901&reqtip=adat&stype=Cegkereses&cegnev=teszt&hatalyos=1";
+	var requestString="https://occsztest.e-cegjegyzek.hu/IMOnline?outformat=xml6&semaverzio=20180901&reqtip=adat&stype=Cegkereses&cegnev=teszt&hatalyos=1";
+
 	//var xsl=loadXMLDoc("searchresults.xsl");
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function()
@@ -32,15 +34,16 @@ function go()
 			//show_area.appendChild(resultDocument);
 			//document.getElementById("result_area").innerHTML = this.responseText;
 			//alert(this.responseXML);
-			console.log(this.getAllResponseHeaders());
+			console.log(this.responseText);
 		}
 	};
-	xhttp.open("GET", requestString, true);
+	xhttp.open("GET", requestString, true, "demo", "demo");
 	xhttp.setRequestHeader('Content-Type', 'text/plain');
+	xhttp.setRequestHeader("Authorization", "Basic " + btoa("demo:demo"));
 	//xhttp.setRequestHeader("Upgrade-Insecure-Request", "1");
-	//xhttp.withCredentials = true;
+	xhttp.withCredentials = true;
 	xhttp.send();
-	console.log("---1 / 1");
+	console.log("---1");
 }
 
 var cgWindow;
