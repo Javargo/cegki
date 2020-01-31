@@ -1,72 +1,53 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-<title>Cégjegyzék teszt</title>
-<script type="text/javascript" crossorigin="use-credentials">
-
-function loadXMLDoc(filename)
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+		<title>Cégjegyzék teszt</title>
+		<style>
+			div
+			{
+				margin: 5px;
+				padding: 3px;
+				border: 1px solid gray;
+			}
+		</style>
+		<script type="text/javascript" crossorigin="use-credentials">
+function echo(str)
 {
-	var xhttp = new XMLHttpRequest();
-	xhttp.open("GET", filename, false);
-	xhttp.send("");
-	return xhttp.responseXML;
+	var d=document.createElement("div");
+	d.textContent=str;
+	document.getElementById("echo_area").appendChild(d);
 }
 
 function go()
 {
-	//var requestString="https://demo:demo@occsztest.e-cegjegyzek.hu/IMOnline?outformat=xml6&semaverzio=20180901&reqtip=adat&stype=Cegkereses&cegnev=teszt&hatalyos=1";
-	var requestString="https://occsztest.e-cegjegyzek.hu/IMOnline?outformat=xml6&semaverzio=20180901&reqtip=adat&stype=Cegkereses&cegnev=teszt&hatalyos=1";
-
-	//var xsl=loadXMLDoc("searchresults.xsl");
+	document.getElementById("echo_area").innerHTML="";
+	var requestString="https://demo:demo@occsztest.e-cegjegyzek.hu/IMOnline?outformat=xml6&semaverzio=20180901&reqtip=adat&stype=Cegkereses&cegnev=teszt&hatalyos=1";
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function()
 	{
-		console.log("---2 "+this.readyState+"   "+this.status);
-		//if (this.readyState == 4 && this.status == 200)
-		if (this.readyState == 4)
+		echo("readystatechange event: readyState= "+this.readyState+" status="+this.status);
+		if(this.readyState == 4)
 		{
-			console.log("---3");
-			//var xsltProcessor = new XSLTProcessor();
-			//xsltProcessor.importStylesheet(xsl);
-			//resultDocument = xsltProcessor.transformToFragment(this.responseXML, document);
-			//var show_area=document.getElementById("result_area");
-			//show_area.innerHTML="";
-			//show_area.appendChild(resultDocument);
-			//document.getElementById("result_area").innerHTML = this.responseText;
-			//alert(this.responseXML);
-			console.log(this.responseText);
+			if(this.status==200)
+			{
+				echo("A lekérdezés sikeres");
+				echo("A válasz tartalma: "+this.responseText);
+			}
 		}
 	};
 	xhttp.open("GET", requestString, true, "demo", "demo");
 	xhttp.setRequestHeader('Content-Type', 'text/plain');
-	//xhttp.setRequestHeader("Authorization", "Basic " + btoa("demo:demo"));
-	//xhttp.setRequestHeader("Upgrade-Insecure-Request", "1");
+	xhttp.setRequestHeader("Authorization", "Basic " + btoa("demo:demo"));
 	xhttp.withCredentials = true;
 	xhttp.send();
-	console.log("---1");
+	echo("Kérés elküldve a következő tartalommal: "+requestString);
+	
 }
-
-/*var cgWindow;
-
-function go2()
-{
-	cgWindow=window.open("https://www.e-cegjegyzek.hu", "cegjegyzek");
-	cgWindow.document.documentElement.addEventListener("load", function(e){console.log(":)");});
-}
-
-function go3()
-{
-	console.log(cgWindow.document.documentElement.innerHTML);
-}*/
-
-
-</script>
-</head>
-<body>
-Cégnév: <input type="text" id="cegnev"/>
-<br/>
-<input value="1" onclick="go();" type="button"/><input value="Cégjegyzék" onclick="go2();" type="button"/><input value="???" onclick="go3();" type="button"/>
-<div id="result_area"></div>
-</body>
+		</script>
+	</head>
+	<body>
+		<input value="Teszt" onclick="go();" type="button"/>
+		<div id="echo_area"></div>
+	</body>
 </html>
